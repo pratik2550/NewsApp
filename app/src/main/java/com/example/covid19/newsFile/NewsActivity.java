@@ -6,14 +6,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.covid19.MainActivity;
 import com.example.covid19.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +35,10 @@ public class NewsActivity extends AppCompatActivity {
     Adapter mAdapter;
     List<Article> mArticles = new ArrayList<>();
     Toolbar newstoolbar;
+    Geocoder geoc;
+    List<Address> addresses;
+    double lat=51.50735;
+    double lon=-0.1277567;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +50,11 @@ public class NewsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("News");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        geoc = new Geocoder(this);
+
         mRecyclerView = findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final String country = getCountry();
+        final String country = getCountr();
         fetchJSON(country, API_KEY);
     }
 
@@ -85,9 +97,21 @@ public class NewsActivity extends AppCompatActivity {
         });
     }
 
-    private String getCountry() {
-        Locale locale = Locale.getDefault();
-        String country = locale.getCountry();
+    private String getCountr() {
+//        Locale locale = Locale.getDefault();
+//        String country = locale.getCountry();
+//        Log.d("Country", country+" @@@@@@@@@@");
+        String country = "in";
+        lat = Double.parseDouble(MainActivity.latitude);
+        lon = Double.parseDouble(MainActivity.longitude);
+        Log.d("Country", lat+" @@@@@@@@@@ "+lon);
+        try {
+            addresses = geoc.getFromLocation(lat, lon, 1);
+            Address address = addresses.get(0);
+            country = address.getCountryCode();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return country.toLowerCase();
     }
 }
