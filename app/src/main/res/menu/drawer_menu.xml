@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/group1">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:title="About" />
+
+        <item
+            android:id="@+id/nav_contect"
+            android:title="Contect" />
+
+        <item
+            android:id="@+id/nav_setting"
+            android:title="Setting" />
+
+        <item
+            android:id="@+id/nav_feedback"
+            android:title="Feedback" />
+
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+
+        <item
+            android:id="@+id/nav_android"
+            android:title="Android" />
+
+        <item
+            android:id="@+id/nav_ios"
+            android:title="iOS" />
+
+    </group>
+
+
+</menu>
