@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.covid19.Common;
 import com.example.covid19.MainActivity;
@@ -79,7 +80,7 @@ public class CurrencyActivity extends AppCompatActivity {
                 .baseUrl(ApiCurrency.Base_Url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+        Toast.makeText(CurrencyActivity.this, "Please wait...", Toast.LENGTH_SHORT).show();
         ApiCurrency api = retrofit.create(ApiCurrency.class);
 
         Call<CurrencyPojo> call = api.getCurrency(ApiCurrency.func, CurrencyName.currencyCode[editSpinner.getSelectedItemPosition()], CurrencyName.currencyCode[textSpinner.getSelectedItemPosition()], ApiCurrency.key);
@@ -89,6 +90,7 @@ public class CurrencyActivity extends AppCompatActivity {
                 CurrencyPojo convert = response.body();
 
                 String converted = convert.getRealtimeCurrencyExchangeRate().get5ExchangeRate();
+                Log.d("API", converted);
                 double value = Double.parseDouble(converted) * Double.parseDouble(convertET.getText().toString().trim());
                 convertTV.setText(String.valueOf(value));
 //                currencyTV.setText(converted);
@@ -96,7 +98,7 @@ public class CurrencyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CurrencyPojo> call, Throwable t) {
-//                Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CurrencyActivity.this, "Please check Internet connection...", Toast.LENGTH_SHORT).show();
                 Log.d("==============", t.getMessage());
             }
         });

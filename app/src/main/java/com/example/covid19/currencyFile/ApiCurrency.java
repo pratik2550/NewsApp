@@ -1,7 +1,5 @@
 package com.example.covid19.currencyFile;
 
-import com.example.covid19.weatherFile.WeatherPojo;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
