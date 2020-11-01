@@ -1,4 +1,4 @@
-package com.example.covid19.scoreFile;
+package com.example.covid19.movieFile;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

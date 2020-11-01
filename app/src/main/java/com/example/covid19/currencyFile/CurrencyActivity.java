@@ -3,6 +3,7 @@ package com.example.covid19.currencyFile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,7 @@ public class CurrencyActivity extends AppCompatActivity {
     TextView convertTV;
     Spinner editSpinner, textSpinner;
     Button convertBtn;
+    ProgressDialog mProgressDialog;
 
 //    String valueEt, valueTv, spinnV1, spinnV2;
 
@@ -47,6 +49,10 @@ public class CurrencyActivity extends AppCompatActivity {
         setSupportActionBar(currencytoolbar);
         getSupportActionBar().setTitle("Currency");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Converting...");
+        mProgressDialog.setCanceledOnTouchOutside(false);
 
         convertET = findViewById(R.id.currency_ET);
         convertTV = findViewById(R.id.currency_TV);
@@ -69,6 +75,7 @@ public class CurrencyActivity extends AppCompatActivity {
                 Log.d("Kam Karle", convertET.getText().toString());
                 Log.d("Kam Karle", CurrencyName.currencyCode[editSpinner.getSelectedItemPosition()] +"**"+ CurrencyName.currencyCode[textSpinner.getSelectedItemPosition()]);
                 Log.d("Kam Karle", "buttonClicked");
+                mProgressDialog.show();
                 getCurrencyuData();
             }
         });
@@ -92,12 +99,14 @@ public class CurrencyActivity extends AppCompatActivity {
                 String converted = convert.getRealtimeCurrencyExchangeRate().get5ExchangeRate();
                 Log.d("API", converted);
                 double value = Double.parseDouble(converted) * Double.parseDouble(convertET.getText().toString().trim());
+                mProgressDialog.dismiss();
                 convertTV.setText(String.valueOf(value));
 //                currencyTV.setText(converted);
             }
 
             @Override
             public void onFailure(Call<CurrencyPojo> call, Throwable t) {
+                mProgressDialog.dismiss();
                 Toast.makeText(CurrencyActivity.this, "Please check Internet connection...", Toast.LENGTH_SHORT).show();
                 Log.d("==============", t.getMessage());
             }

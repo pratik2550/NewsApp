@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryLight"
-    tools:context=".scoreFile.ScoreActivity">
+    tools:context=".movieFile.ScoreActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/scoreToolbar"

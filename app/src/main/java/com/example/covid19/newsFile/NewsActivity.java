@@ -6,11 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.covid19.MainActivity;
 import com.example.covid19.R;
+import com.example.covid19.weatherFile.WeatherActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +50,11 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
+        if (!isLocationEnabled(NewsActivity.this)) {
+            Toast.makeText(this, "Please enable gps", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         newstoolbar = findViewById(R.id.newsToolbar);
         setSupportActionBar(newstoolbar);
         getSupportActionBar().setTitle("News");
@@ -58,25 +68,46 @@ public class NewsActivity extends AppCompatActivity {
         fetchJSON(country, API_KEY);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.news_menu, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        int id = item.getItemId();
-//        switch (id){
-//            case R.id.refreshTab:
-//                finish();
-//                startActivity(getIntent());
-//                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
-//        }
-//        return true;
-//    }
+    public static boolean isLocationEnabled(Context context) {
+        int locationMode = 0;
+        String locationProviders;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            try {
+                locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+
+        }else{
+            locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.news_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id){
+            case R.id.refreshTab:
+                finish();
+                startActivity(getIntent());
+                Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
 
     private void fetchJSON(String country, String apiKey) {
         Call<Headlines> call = NewsClient.getInstance().getNewsInterface().getHeadlines(country, apiKey);
@@ -98,9 +129,6 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private String getCountr() {
-//        Locale locale = Locale.getDefault();
-//        String country = locale.getCountry();
-//        Log.d("Country", country+" @@@@@@@@@@");
         String country = "in";
         lat = Double.parseDouble(MainActivity.latitude);
         lon = Double.parseDouble(MainActivity.longitude);

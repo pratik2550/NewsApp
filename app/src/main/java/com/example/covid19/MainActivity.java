@@ -5,26 +5,15 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +21,8 @@ import android.widget.Toast;
 
 import com.example.covid19.currencyFile.CurrencyActivity;
 import com.example.covid19.newsFile.NewsActivity;
-import com.example.covid19.scoreFile.ScoreActivity;
-import com.example.covid19.startupFile.StartupActivity;
+import com.example.covid19.movieFile.ScoreActivity;
+import com.example.covid19.memeFile.StartupActivity;
 import com.example.covid19.stockFile.StockActivity;
 import com.example.covid19.weatherFile.WeatherActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -41,10 +30,7 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -54,7 +40,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView stock, news, weather, startup, score, currency;
+    CardView news, weather, startup, score, currency;
 
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
@@ -64,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     long MIN_TIME = 5000;
     public static Location currentLocation = null;
 
-    public static String latitude, longitude;
+    public static String latitude="0.00", longitude="0.00";
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationCallback locationCallback;
     private LocationRequest locationRequest;
@@ -74,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        stock = findViewById(R.id.stockCardView);
+//        stock = findViewById(R.id.stockCardView);
         news = findViewById(R.id.newsCardView);
         weather = findViewById(R.id.weatherCardView);
         startup = findViewById(R.id.startupCardView);
@@ -87,9 +73,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.nav_home:
-                        Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
-                        break;
                     case R.id.nav_about:
                         Toast.makeText(MainActivity.this, "About Clicked", Toast.LENGTH_SHORT).show();
                         break;
@@ -134,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
-
+                        Toast.makeText(MainActivity.this, "Please provide location permission", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -143,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).check();
 
-        stock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, StockActivity.class));
-                Log.i("On Click", "stock");
-            }
-        });
+//        stock.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, StockActivity.class));
+//                Log.i("On Click", "stock");
+//            }
+//        });
 
         news.setOnClickListener(new View.OnClickListener() {
             @Override
