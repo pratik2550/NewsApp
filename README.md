@@ -27,9 +27,9 @@ It uses many APIs to display information. It shows country specific new, weather
 | :--------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
 |   <img src="Screenshot/weather2.png" height="600">   |      <img src="Screenshot/meme.png" height="600">     |     <img src="Screenshot/movie.png" height="600">     |
 
-|                     Search Movies                    |                   Currency Exchange                   |
-| :--------------------------------------------------: | :---------------------------------------------------: |
-| <img src="Screenshot/searchMovie.png" height="600">  |  <img src="Screenshot/currency.png" height="600">     |
+|                     Search Movies                    |                   Currency Exchange                   |                                                       |
+| :--------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
+| <img src="Screenshot/searchMovie.png" height="600">  |  <img src="Screenshot/currency.png" height="600">     |     <img src="Screenshot/blank.png" height="600">     |
 
 ## APK :iphone:
 [Apk link](https://drive.google.com/file/d/1ajau8tfM1bksKFg5woGRGBUyr66tIBTX/view?usp=sharing)
