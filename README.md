@@ -32,7 +32,7 @@ It uses many APIs to display information. It shows country specific new, weather
 | <img src="Screenshot/searchMovie.png" height="600">  |  <img src="Screenshot/currency.png" height="600">     |
 
 ## APK :iphone:
-[Apk link](https://drive.google.com/file/d/1Z2uGWXdqhYIySatzZamZ1dXoEPbhzhcM/view?usp=sharing)
+[Apk link](https://drive.google.com/file/d/1ajau8tfM1bksKFg5woGRGBUyr66tIBTX/view?usp=sharing)
 
 ## Features:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Country specific news in brief<br />
@@ -42,8 +42,8 @@ It uses many APIs to display information. It shows country specific new, weather
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.Search movies by name<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.Movies release date and imdb rating<br />
 ## APIs Used :
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.**News** https://newsapi.org/v2/<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.**Weather** http://api.openweathermap.org/data/2.5/<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.**Meme** https://meme-api.herokuapp.com/<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.**Movies** https://api.themoviedb.org/3/<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.**Currency Exchange** https://www.alphavantage.co/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.**News :-** https://newsapi.org/v2/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.**Weather :-** http://api.openweathermap.org/data/2.5/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.**Meme :-** https://meme-api.herokuapp.com/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.**Movies :-** https://api.themoviedb.org/3/<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.**Currency Exchange :-** https://www.alphavantage.co/<br />
