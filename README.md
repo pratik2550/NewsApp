@@ -1,4 +1,4 @@
-# NewsApp
+# Savant App
 A simple news application created in android studio using newsapi.org(for country news), alphavantage.co(for currency conversion), openweathermap.org(for weather report).
 Features:-
 1.News sort by country
