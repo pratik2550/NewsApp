@@ -34,7 +34,7 @@ It uses many APIs to display information. It shows country specific new, weather
 ## APK :iphone:
 [Apk link](https://drive.google.com/file/d/1ajau8tfM1bksKFg5woGRGBUyr66tIBTX/view?usp=sharing)
 
-## Features:
+## Features :clipboard:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.Country specific news in brief<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Weather report by location<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.Dynamic currency exchange rate<br />
